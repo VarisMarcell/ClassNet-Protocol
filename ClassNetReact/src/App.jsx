@@ -9,7 +9,19 @@ function App() {
     fetch('http://127.0.0.1:5000', {
       'methods':"GET",
       headers : {
-        'Content-Type':"applicaiton/json"
+        'Content-Type':"application/json",
+        'Accept': "application/json"
+      }
+    })
+    .then(response => response.json())
+    .then(response => setData(response))
+    .catch(error => console.log(error))
+
+    fetch('http://127.0.0.1:5000/Caeden', {
+      'methods':"GET",
+      headers : {
+        'Content-Type':"application/json",
+        'Accept': "application/json"
       }
     })
     .then(response => response.json())
