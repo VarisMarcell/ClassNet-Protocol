@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #FBEAEB;
+    background-image: radial-gradient(ellipse farthest-corner at 7px 7px, #fff5f5, #fff5f5 50%, #FBEAEB 50%);
+    background-size: 7px 7px;
+}
+
+/* front page */
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    width: 100vw;
+    height: 100vh;
+}
+
+.mainTitle {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 500%;
+    line-height: 112px;
+
+    text-align: center;
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #37448599;
+}
+
+.mainButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.createSession {
+    width: 300px;
+    height: 75px;
+
+    background: #FBEAEB;
+
+    
+    border: 2px solid #404b7f79;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35);
+    border-radius: 31px;
+
+    /* text */
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+
+    color: #404b7f79;
+}
+
+.createSession:hover {
+    border: 3px solid #2F3C7E;
+    color: #2F3C7E;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.joinSession {
+    width: 260px;
+    height: 75px;
+    
+    background: #FBEAEB;
+
+    border: 2px solid #404b7f79;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.35);
+    border-radius: 31px;
+
+    /* text */
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+
+    color: #404b7f79;
+}
+
+.joinSession:hover {
+    border: 3px solid #2F3C7E;
+    color: #2F3C7E;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
