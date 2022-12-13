@@ -1,5 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import JoinSession from '../sorces/JoinSessionPage'
+import CreateSession from '../sorces/CreateSessionPage'
+import UserView from '../sorces/JoinUserView/userView'
 import App from './App'
 import {
   createBrowserRouter,
@@ -12,6 +15,18 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />
+  },
+  {
+    path: "/JoinSession",
+    element: <JoinSession />
+  },
+  {
+    path: "/CreateSession",
+    element: <CreateSession />
+  },
+  {
+    path: "/JoinSession/userView",
+    element: <UserView />
   }
 ])
 

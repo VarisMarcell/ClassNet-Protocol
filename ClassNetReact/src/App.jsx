@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useNavigate } from 'react-router-dom'
 import './App.css'
 
 function App() {
   const [data, setData] = useState({ name: "" })
+  const navigate = useNavigate()
 
   function getData() {
     fetch('http://127.0.0.1:5000', {
@@ -36,8 +37,19 @@ function App() {
     <div className="App">
       <h1 className='mainTitle'>ClassNet Protocols</h1>
       <section className='mainButtons'>
-        <button className='createSession'>Create Session</button>
-        <button className='joinSession'>Join Session</button>
+        <button
+          className='createSession'
+          onClick={() => {
+            navigate('/CreateSession')
+          }}
+
+        >Create Session</button>
+        <button
+          className='joinSession'
+          onClick={() => {
+            navigate('/JoinSession')
+          }}
+        >Join Session</button>
       </section>
     </div>
   )
