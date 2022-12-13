@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { useNavigate } from 'react-router-dom'
 
 const JoinSession = () => {
+    const navigate = useNavigate()
     const [form, setForm] = useState({
         sessionKey: "",
         userName: "",
@@ -30,7 +32,12 @@ const JoinSession = () => {
                     <label htmlFor="seat">Seat:</label>
                     <input onChange={handleJoinChange} value={form.seatPosition} name="seatPosition" placeholder="Enter Seat Position"></input>
                 </div>
-                <button className='joinSession'>Join Session</button>
+                <button 
+                    className='joinSession'
+                    onClick={() => {
+                        navigate(`/JoinSession/userView/${form.sessionKey}/${form.userName}/${form.seatPosition}`)
+                      }}
+                >Join Session</button>
             </section>
         </div>
     )
