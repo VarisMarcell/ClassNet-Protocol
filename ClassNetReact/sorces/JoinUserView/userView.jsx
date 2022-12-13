@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { Button, TextField } from '@mui/material'
+import { useParams } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 
 const UserView = () => {
     const [packets, setPackets] = useState({
@@ -136,6 +138,7 @@ const UserView = () => {
         //     }
         // }
     })
+    const {session, name, seat} = useParams()
 
     const handleChange = (event) => { 
         const {packet, group, id, value} = event.target
@@ -161,14 +164,14 @@ const UserView = () => {
                 <section className="detailDisplay">
                     <section>
                         <div className="userInfo">
-                            <h1>Name</h1>
+                            <h1>User: {name}</h1>
                         </div>
                         <div className="userInfo">
-                            <h1>Seat#</h1>
+                            <h1>Seat#: {seat}</h1>
                         </div>
                     </section>
                     <div className="userInfo">
-                        <h1>Session #</h1>
+                        <h1>Session #: {session}</h1>
                     </div>
                 </section>
                 <section className="notifications">

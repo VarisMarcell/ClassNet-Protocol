@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request 
 from flask_cors import CORS, cross_origin
 
 import os
@@ -28,6 +28,23 @@ def joinSession(sessionKey, userName, seatNum):
             pass
         else: 
             return
+
+# @app.route("/joinSession", methods=["POST", "GET"])
+# def joinSession():
+#     if request.method == "POST":
+#         return "..."
+    
+
+
+#     sessionKey = request.args.get('sessionKey')
+#     userName = request.args.get('userName')
+#     seatNum = request.args.get('seatNum')
+#     response_body = {
+#         "sessionKey": sessionKey,
+#         "userName": userName,
+#         "seatNum": seatNum,
+#     }
+#     return response_body
 
 @app.route("/createSession")
 def newSession():

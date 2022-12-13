@@ -25,7 +25,7 @@ const router = createBrowserRouter([
     element: <CreateSession />
   },
   {
-    path: "/JoinSession/userView",
+    path: "/joinSession/userView/:session/:name/:seat",
     element: <UserView />
   }
 ])
