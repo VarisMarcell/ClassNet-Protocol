@@ -21,12 +21,19 @@ def home():
     }
     return response_body
 
-@app.route("/join")
-def joinSession():
-    pass
+@app.route("/joinSession")
+def joinSession(sessionKey, userName, seatNum):
+    for i in os.listdir():
+        if i == (f"{sessionKey}.txt"):
+            pass
+        else: 
+            return
 
-@app.route("/create")
-def newSession(sessionName, adminKey):
+@app.route("/createSession")
+def newSession():
+    os.chdir(os.path.join(".", "Sessions"))
+    sessionName = str(uuid.uuid4())[:6]
+    adminKey = str(uuid.uuid4())
     x = True
     y = False
     num = 0
@@ -49,6 +56,9 @@ def newSession(sessionName, adminKey):
         print(num)
 
     return tempFile
+
+def setClassroom():
+    pass
 
 @app.route("/")
 
