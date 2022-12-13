@@ -2,6 +2,159 @@ import { useState } from "react"
 import { Button, TextField } from '@mui/material'
 
 const UserView = () => {
+    const [packets, setPackets] = useState({
+        packet0: {
+            source: {
+                section: "",
+                row: "",
+                seat: "",
+            },
+            destination: {
+                section: "",
+                row: "",
+                seat: "",  
+            },
+            sequence: {
+                Num: "",
+                total: "",
+            },
+            body: {
+                "1": " ",
+                "2": " ",
+                "3": " ",
+                "4": " ",
+                "5": " ",
+                "6": " ",
+                "7": " ",
+                "8": " ",
+                "9": " ",
+                "A": " ",
+                "B": " ",
+                "C": " ",
+                "D": " ",
+                "E": " ",
+                "F": " ",
+            }
+        },
+        // packet1: {
+        //     source: {
+        //         section: "",
+        //         row: "",
+        //         seat: "",
+        //     },
+        //     destination: {
+        //         section: "",
+        //         row: "",
+        //         seat: "",  
+        //     },
+        //     sequence: {
+        //         Num: "",
+        //         total: "",
+        //     },
+        //     body: {
+        //         "1": " ",
+        //         "2": " ",
+        //         "3": " ",
+        //         "4": " ",
+        //         "5": " ",
+        //         "6": " ",
+        //         "7": " ",
+        //         "8": " ",
+        //         "9": " ",
+        //         "A": " ",
+        //         "B": " ",
+        //         "C": " ",
+        //         "D": " ",
+        //         "E": " ",
+        //         "F": " ",
+        //     }
+        // },
+        // packet2: {
+        //     source: {
+        //         section: "",
+        //         row: "",
+        //         seat: "",
+        //     },
+        //     destination: {
+        //         section: "",
+        //         row: "",
+        //         seat: "",  
+        //     },
+        //     sequence: {
+        //         Num: "",
+        //         total: "",
+        //     },
+        //     body: {
+        //         "1": " ",
+        //         "2": " ",
+        //         "3": " ",
+        //         "4": " ",
+        //         "5": " ",
+        //         "6": " ",
+        //         "7": " ",
+        //         "8": " ",
+        //         "9": " ",
+        //         "A": " ",
+        //         "B": " ",
+        //         "C": " ",
+        //         "D": " ",
+        //         "E": " ",
+        //         "F": " ",
+        //     }
+        // },
+        // packet3: {
+        //     source: {
+        //         section: "",
+        //         row: "",
+        //         seat: "",
+        //     },
+        //     destination: {
+        //         section: "",
+        //         row: "",
+        //         seat: "",  
+        //     },
+        //     sequence: {
+        //         Num: "",
+        //         total: "",
+        //     },
+        //     body: {
+        //         "1": " ",
+        //         "2": " ",
+        //         "3": " ",
+        //         "4": " ",
+        //         "5": " ",
+        //         "6": " ",
+        //         "7": " ",
+        //         "8": " ",
+        //         "9": " ",
+        //         "A": " ",
+        //         "B": " ",
+        //         "C": " ",
+        //         "D": " ",
+        //         "E": " ",
+        //         "F": " ",
+        //     }
+        // }
+    })
+
+    const handleChange = (event) => { 
+        const {packet, group, id, value} = event.target
+        setPackets(prevPackets => {
+            return {
+                ...prevPackets,
+                [packet]: {
+                    ...packet,
+                    [group]: {
+                        ...group,
+                        [id]: value
+                    }
+                }
+            }
+        })
+        console.log(packets)
+    }
+
+
     return (
         <div className="userView">
             <nav className="userViewNav">
@@ -55,7 +208,7 @@ const UserView = () => {
                                     <TextField sx={{ width: "50px" }} id="outlined-basic" label="E" variant="outlined" />
                                     <TextField sx={{ width: "50px" }} id="outlined-basic" label="F" variant="outlined" />
                                 </div>
-                                <div className="line1, packetLines">
+                                {/* <div className="line1, packetLines">
                                     <h1>Line 1:</h1>
                                     <TextField sx={{ width: "50px" }} id="outlined-basic" label="0" variant="outlined" />
                                     <TextField sx={{ width: "50px" }} id="outlined-basic" label="1" variant="outlined" />
@@ -111,7 +264,7 @@ const UserView = () => {
                                     <TextField sx={{ width: "50px" }} id="outlined-basic" label="D" variant="outlined" />
                                     <TextField sx={{ width: "50px" }} id="outlined-basic" label="E" variant="outlined" />
                                     <TextField sx={{ width: "50px" }} id="outlined-basic" label="F" variant="outlined" />
-                                </div>
+                                </div> */}
                             </section>
                         </section>
                         <section className="packageMessage">
@@ -122,7 +275,7 @@ const UserView = () => {
                                         <h1>Header:</h1>
                                         <section className="packetHeaderSection">
                                             <h1>Source:</h1>
-                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
+                                            <TextField onChange={handleChange} value={packets.packet0.source.section} packet="packet0" group="source" sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
                                             <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
                                             <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
                                         </section>
@@ -163,7 +316,7 @@ const UserView = () => {
                                         </div>
                                     </div>
                                 </section>
-                                <section className="packet1, packet">
+                                {/* <section className="packet1, packet">
                                     <div className="packetHeader">
                                         <h1>Header:</h1>
                                         <section className="packetHeaderSection">
@@ -300,9 +453,12 @@ const UserView = () => {
                                             <TextField sx={{ width: "50px" }} id="outlined-basic" label="F" variant="outlined" />
                                         </div>
                                     </div>
-                                </section>
+                                </section> */}
                             </section>
                         </section>
+                    </section>
+                    <section className="sendButton">
+                        <Button variant="outlined">Send</Button>
                     </section>
                 </div>
                 <div className="notificationBody"></div>
