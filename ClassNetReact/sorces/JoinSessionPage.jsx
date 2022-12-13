@@ -1,4 +1,12 @@
+import { useState } from "react"
+
 const JoinSession = () => {
+    const [form, setForm] = useState({
+        sessionKey: "",
+        userName: "",
+        seatPosition: "",
+    })
+
     return (
         <div className="App">
             <h1 className='mainTitle'>ClassNet Protocols</h1>
