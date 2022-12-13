@@ -244,11 +244,24 @@ body {
     flex-direction: column;
 }
 
+.allPackets {
+    display: flex;
+    gap: 30px;
+    width: fit-content;
+    overflow: scroll;
+}
+
 .packet {
     background: #FFFFFF;
-    width: fit-content;
+    width: 450px;
     padding: 20px;
     box-sizing: border-box;
     border-radius: 3px;
+}
+
+.packet .packetHeaderSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 

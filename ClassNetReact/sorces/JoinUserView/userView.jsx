@@ -116,189 +116,191 @@ const UserView = () => {
                         </section>
                         <section className="packageMessage">
                             <h1>Packet Messages:</h1>
-                            <section className="packet0, packet">
-                                <div className="packetHeader">
-                                    <h1>Header:</h1>
-                                    <section className="packetHeaderSection">
-                                        <h1>Source:</h1>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
-                                    </section>
-                                    <section className="packetHeaderSection">
-                                        <h1>Destination:</h1>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
-                                    </section>
-                                    <section className="packetHeaderSection">
-                                        <h1>Sequence#:</h1>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="#" variant="outlined" />
-                                        <p>of</p>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="total" variant="outlined" />
-                                    </section>
-                                </div>
-                                <div className="packetBody">
-                                    <h1>Body:</h1>
-                                    <div>
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="0" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="1" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="2" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="3" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="4" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="5" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="6" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="7" variant="outlined" />
+                            <section className="allPackets">
+                                <section className="packet0, packet">
+                                    <div className="packetHeader">
+                                        <h1>Header:</h1>
+                                        <section className="packetHeaderSection">
+                                            <h1>Source:</h1>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
+                                        </section>
+                                        <section className="packetHeaderSection">
+                                            <h1>Destination:</h1>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
+                                        </section>
+                                        <section className="packetHeaderSection">
+                                            <h1>Sequence#:</h1>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="#" variant="outlined" />
+                                            <p>of</p>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="total" variant="outlined" />
+                                        </section>
                                     </div>
-                                    <div>
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="8" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="9" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="A" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="B" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="C" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="D" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="E" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="F" variant="outlined" />
+                                    <div className="packetBody">
+                                        <h1>Body:</h1>
+                                        <div>
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="0" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="1" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="2" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="3" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="4" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="5" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="6" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="7" variant="outlined" />
+                                        </div>
+                                        <div>
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="8" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="9" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="A" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="B" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="C" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="D" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="E" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="F" variant="outlined" />
+                                        </div>
                                     </div>
-                                </div>
-                            </section>
-                            <section className="packet1, packet">
-                                <div className="packetHeader">
-                                    <h1>Header:</h1>
-                                    <section className="packetHeaderSection">
-                                        <h1>Source:</h1>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
-                                    </section>
-                                    <section className="packetHeaderSection">
-                                        <h1>Destination:</h1>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
-                                    </section>
-                                    <section className="packetHeaderSection">
-                                        <h1>Sequence#:</h1>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="#" variant="outlined" />
-                                        <p>of</p>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="total" variant="outlined" />
-                                    </section>
-                                </div>
-                                <div className="packetBody">
-                                    <h1>Body:</h1>
-                                    <div>
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="0" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="1" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="2" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="3" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="4" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="5" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="6" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="7" variant="outlined" />
+                                </section>
+                                <section className="packet1, packet">
+                                    <div className="packetHeader">
+                                        <h1>Header:</h1>
+                                        <section className="packetHeaderSection">
+                                            <h1>Source:</h1>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
+                                        </section>
+                                        <section className="packetHeaderSection">
+                                            <h1>Destination:</h1>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
+                                        </section>
+                                        <section className="packetHeaderSection">
+                                            <h1>Sequence#:</h1>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="#" variant="outlined" />
+                                            <p>of</p>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="total" variant="outlined" />
+                                        </section>
                                     </div>
-                                    <div>
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="8" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="9" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="A" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="B" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="C" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="D" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="E" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="F" variant="outlined" />
+                                    <div className="packetBody">
+                                        <h1>Body:</h1>
+                                        <div>
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="0" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="1" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="2" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="3" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="4" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="5" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="6" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="7" variant="outlined" />
+                                        </div>
+                                        <div>
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="8" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="9" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="A" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="B" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="C" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="D" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="E" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="F" variant="outlined" />
+                                        </div>
                                     </div>
-                                </div>
-                            </section>
-                            <section className="packet2, packet">
-                                <div className="packetHeader">
-                                    <h1>Header:</h1>
-                                    <section className="packetHeaderSection">
-                                        <h1>Source:</h1>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
-                                    </section>
-                                    <section className="packetHeaderSection">
-                                        <h1>Destination:</h1>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
-                                    </section>
-                                    <section className="packetHeaderSection">
-                                        <h1>Sequence#:</h1>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="#" variant="outlined" />
-                                        <p>of</p>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="total" variant="outlined" />
-                                    </section>
-                                </div>
-                                <div className="packetBody">
-                                    <h1>Body:</h1>
-                                    <div>
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="0" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="1" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="2" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="3" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="4" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="5" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="6" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="7" variant="outlined" />
+                                </section>
+                                <section className="packet2, packet">
+                                    <div className="packetHeader">
+                                        <h1>Header:</h1>
+                                        <section className="packetHeaderSection">
+                                            <h1>Source:</h1>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
+                                        </section>
+                                        <section className="packetHeaderSection">
+                                            <h1>Destination:</h1>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
+                                        </section>
+                                        <section className="packetHeaderSection">
+                                            <h1>Sequence#:</h1>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="#" variant="outlined" />
+                                            <p>of</p>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="total" variant="outlined" />
+                                        </section>
                                     </div>
-                                    <div>
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="8" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="9" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="A" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="B" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="C" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="D" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="E" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="F" variant="outlined" />
+                                    <div className="packetBody">
+                                        <h1>Body:</h1>
+                                        <div>
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="0" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="1" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="2" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="3" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="4" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="5" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="6" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="7" variant="outlined" />
+                                        </div>
+                                        <div>
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="8" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="9" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="A" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="B" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="C" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="D" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="E" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="F" variant="outlined" />
+                                        </div>
                                     </div>
-                                </div>
-                            </section>
-                            <section className="packet3, packet">
-                                <div className="packetHeader">
-                                    <h1>Header:</h1>
-                                    <section className="packetHeaderSection">
-                                        <h1>Source:</h1>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
-                                    </section>
-                                    <section className="packetHeaderSection">
-                                        <h1>Destination:</h1>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
-                                    </section>
-                                    <section className="packetHeaderSection">
-                                        <h1>Sequence#:</h1>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="#" variant="outlined" />
-                                        <p>of</p>
-                                        <TextField sx={{ width: "100px" }} id="outlined-basic" label="total" variant="outlined" />
-                                    </section>
-                                </div>
-                                <div className="packetBody">
-                                    <h1>Body:</h1>
-                                    <div>
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="0" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="1" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="2" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="3" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="4" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="5" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="6" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="7" variant="outlined" />
+                                </section>
+                                <section className="packet3, packet">
+                                    <div className="packetHeader">
+                                        <h1>Header:</h1>
+                                        <section className="packetHeaderSection">
+                                            <h1>Source:</h1>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
+                                        </section>
+                                        <section className="packetHeaderSection">
+                                            <h1>Destination:</h1>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Section" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Row" variant="outlined" />
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="Seat" variant="outlined" />
+                                        </section>
+                                        <section className="packetHeaderSection">
+                                            <h1>Sequence#:</h1>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="#" variant="outlined" />
+                                            <p>of</p>
+                                            <TextField sx={{ width: "100px" }} id="outlined-basic" label="total" variant="outlined" />
+                                        </section>
                                     </div>
-                                    <div>
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="8" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="9" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="A" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="B" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="C" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="D" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="E" variant="outlined" />
-                                        <TextField sx={{ width: "50px" }} id="outlined-basic" label="F" variant="outlined" />
+                                    <div className="packetBody">
+                                        <h1>Body:</h1>
+                                        <div>
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="0" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="1" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="2" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="3" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="4" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="5" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="6" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="7" variant="outlined" />
+                                        </div>
+                                        <div>
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="8" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="9" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="A" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="B" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="C" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="D" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="E" variant="outlined" />
+                                            <TextField sx={{ width: "50px" }} id="outlined-basic" label="F" variant="outlined" />
+                                        </div>
                                     </div>
-                                </div>
+                                </section>
                             </section>
                         </section>
                     </section>
