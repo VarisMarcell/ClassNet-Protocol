@@ -5,6 +5,7 @@ import os
 import uuid
 import json
 
+# venv\Scripts\Activate.ps1
 # flask --app backendcode.py run
 # pip install Flask-Cors 
 
@@ -194,8 +195,23 @@ def home():
 # session = params.session
 
 
-@app.route("/createSession")
+@app.route("/createSession", methods=["POST", "GET"])
 def createSession():
+    if request.method == "POST":
+        content_type = request.headers.get('Content-Type')
+        if (content_type == 'application/json'):
+            json = request.json
+            return json
+        else:
+            response = {
+                'canProceed' : False,
+                'statusCode' : 400,
+                'message' : 'Content-Type not supported!',
+                'error' : 'Bad Request'
+            }
+            return response
+
+
     os.chdir(os.path.join(".", "Sessions"))
     sessionName = str(uuid.uuid4())[:6]
     adminKey = str(uuid.uuid4())
@@ -266,7 +282,19 @@ def getJoinData():
 @app.route("/joinSession", methods=["POST", "GET"])
 def joinSession():
     if request.method == "POST":
-        return "..."
+        content_type = request.headers.get('Content-Type')
+        if (content_type == 'application/json'):
+            json = request.json
+            return json
+        else:
+            response = {
+                'canProceed' : False,
+                'statusCode' : 400,
+                'message' : 'Content-Type not supported!',
+                'error' : 'Bad Request'
+            }
+            return response
+        
 
     sessionKey = request.args.get('sessionKey')
     userName = request.args.get('userName')
@@ -274,6 +302,7 @@ def joinSession():
 
     if seatNum == None:
         response = {
+            'canProceed' : False,
             'statusCode' : 400,
             'message' : 'You must provide a valid seatNum.',
             'error' : 'Bad Request'
@@ -281,6 +310,7 @@ def joinSession():
         return response
     if sessionKey == None:
         response = {
+            'canProceed' : False,
             'statusCode' : 400,
             'message' : 'You must provide a valid sessionKey.',
             'error' : 'Bad Request'
@@ -288,6 +318,7 @@ def joinSession():
         return response
     if userName == None:
         response = {
+            'canProceed' : False,
             'statusCode' : 400,
             'message' : 'You must provide a valid userName.',
             'error' : 'Bad Request'
@@ -299,6 +330,7 @@ def joinSession():
         newData["seats"][f"{seatNum}"] = userName
     else:
         response = {
+            'canProceed' : False,
             'statusCode' : 400,
             'message' : 'You must provide a valid seatNum.',
             'error' : 'Bad Request'
@@ -320,6 +352,7 @@ def joinSession():
     os.chdir('..')
 
     response_body = {
+        "canProceed" : True,
         "sessionKey": sessionKey,
         "userName": userName,
         "seatNum": seatNum,
