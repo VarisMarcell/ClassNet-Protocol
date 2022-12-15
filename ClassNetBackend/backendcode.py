@@ -123,6 +123,8 @@ mainData = {
         'E15': '',
         'E16': '',
     },
+
+    'messages' : [],
     
     'packets' : [
         {
@@ -418,9 +420,35 @@ def removeSeat():
 
 
 
-@app.route("/")
-def new():
-    pass
+@app.route("/createMessage")
+def createMessage():
+    sessionKey = request.args.get('sessionKey')
+
+    newData = fetchData(sessionKey)
+    if newData["seats"][f"{seatNum}"] != '':
+        newData["seats"][f"{seatNum}"] = ''
+    else:
+        response = {
+            'statusCode' : 400,
+            'message' : 'You must provide a valid seatNum.',
+            'error' : 'Bad Request'
+        }
+        return response
+
+    originalFile = f"{sessionKey}.txt"
+    oldFile = 'temp.txt'
+
+    os.chdir(os.path.join(".", "Sessions"))
+    os.rename(originalFile, oldFile)
+    json_object = json.dumps(newData, indent=4)
+
+    with open(f"{sessionKey}.txt", "w") as newFile:
+        newFile.write(json_object)
+        newFile.write('\n')
+
+    os.remove(oldFile)
+    os.chdir('..')
+
 
 
 def route():
