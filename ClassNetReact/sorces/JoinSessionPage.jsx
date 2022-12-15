@@ -20,6 +20,16 @@ const JoinSession = () => {
         console.log(form)
     }
 
+    const join = async () => {
+        await fetch(`127.0.0.1:5000/joinSession?sessionKey=${form.sessionKey}&userName=${form.userName}&seatPosition=${form.seatPosition}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+    }
+
     return (
         <div className="App">
             <h1 className='mainTitle'>ClassNet Protocols</h1>
@@ -32,11 +42,11 @@ const JoinSession = () => {
                     <label htmlFor="seat">Seat:</label>
                     <input onChange={handleJoinChange} value={form.seatPosition} name="seatPosition" placeholder="Enter Seat Position"></input>
                 </div>
-                <button 
+                <button
                     className='joinSession'
-                    onClick={() => {
-                        navigate(`/JoinSession/userView/${form.sessionKey}/${form.userName}/${form.seatPosition}`)
-                      }}
+                    onClick={join}
+
+                        // navigate(`/JoinSession / userView / ${ form.sessionKey } /${form.userName}/${ form.seatPosition } `)
                 >Join Session</button>
             </section>
         </div>
