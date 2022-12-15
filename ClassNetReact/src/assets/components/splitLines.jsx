@@ -1,11 +1,43 @@
 import { TextField } from '@mui/material'
+import { useState } from 'react'
 
-const Lines = () => {
+const Lines = ({lineData, setLineData, Key}) => {
+    // setLineData({
+    //         id: {Key},
+    //         "zero": " ",
+    //         "one": " ",
+    //         "two": " ",
+    //         "three": " ",
+    //         "four": " ",
+    //         "five": " ",
+    //         "six": " ",
+    //         "seven": " ",
+    //         "eight": " ",
+    //         "nine": " ",
+    //         "A": " ",
+    //         "B": " ",
+    //         "C": " ",
+    //         "D": " ",
+    //         "E": " ",
+    //         "F": " ",
+    // })
+
+    // const handleChange = (event) => {
+    //     const {name, value} = event.target
+    //     setLineData(prevState => {
+    //         return {
+    //             ...prevState,
+    //             [name]: value
+    //         }
+    //     })
+    //     console.log(state)
+    // }
+
     return (
         <div className="line0, packetLines">
-            <h1>Line:</h1>
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="0" variant="outlined" />
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="1" variant="outlined" />
+            <h1>Line: {Key}</h1>
+            {/* <TextField sx={{ width: "50px" }} onChange={handleChange} name={"zero"} value={lineData.zero} id="outlined-basic" label="0" variant="outlined" />
+            <TextField sx={{ width: "50px" }} onChange={handleChange} name={"one"} value={lineData.one} id="outlined-basic" label="1" variant="outlined" /> */}
             <TextField sx={{ width: "50px" }} id="outlined-basic" label="2" variant="outlined" />
             <TextField sx={{ width: "50px" }} id="outlined-basic" label="3" variant="outlined" />
             <TextField sx={{ width: "50px" }} id="outlined-basic" label="4" variant="outlined" />

@@ -9,6 +9,7 @@ const UserView = () => {
     const [viewable, setViewable] = useState({})
     const [activeStep, setActiveStep] = useState(0)
     const [lines, setLines] = useState(1)
+    const [lineData, setLineData] = useState({})
     const { session, name, seat } = useParams()
     const [message, setMessage] = useState({
         message: ""
@@ -87,7 +88,7 @@ const UserView = () => {
                                     </section>
                                     : viewable.split ?
                                         <>
-                                            <SplitMessage lines={lines} />
+                                            <SplitMessage lineData={lineData} setLineData={setLineData} lines={lines} />
                                             <section className="enterMessage" style={{ opacity: 0.65 }}>
                                                 <h1>Message:</h1>
                                                 <TextField disabled onChange={handleMessageChange} value={message.message} id="filled-basic, fullWidth" label="Enter Message Here" variant="filled" />
