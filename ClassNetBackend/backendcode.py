@@ -232,7 +232,12 @@ def fetchData(sessionKey):
     while True:
         if counter >= len(os.listdir()):
             os.chdir('..')
-            return "Invalid Session"
+            response = {
+                'statusCode' : 404,
+                'message' : 'A session with that key could not be found.',
+                'error' : 'Not Found'
+            }
+            return response
         elif f"{sessionKey}.txt" == os.listdir()[counter]:
             sessionFile = open(f"{sessionKey}.txt", "r")
             sessionData = sessionFile.read()
@@ -263,11 +268,38 @@ def joinSession():
     userName = request.args.get('userName')
     seatNum = request.args.get('seatPosition')
 
+    if seatNum == None:
+        response = {
+            'statusCode' : 400,
+            'message' : 'You must provide a valid seatNum.',
+            'error' : 'Bad Request'
+        }
+        return response
+    if sessionKey == None:
+        response = {
+            'statusCode' : 400,
+            'message' : 'You must provide a valid sessionKey.',
+            'error' : 'Bad Request'
+        }
+        return response
+    if userName == None:
+        response = {
+            'statusCode' : 400,
+            'message' : 'You must provide a valid userName.',
+            'error' : 'Bad Request'
+        }
+        return response
+
     newData = fetchData(sessionKey)
     if newData["seats"][f"{seatNum}"] == '':
         newData["seats"][f"{seatNum}"] = userName
     else:
-        return "Invalid Seat"
+        response = {
+            'statusCode' : 400,
+            'message' : 'You must provide a valid seatNum.',
+            'error' : 'Bad Request'
+        }
+        return response
 
     originalFile = f"{sessionKey}.txt"
     oldFile = 'temp.txt'
@@ -299,12 +331,32 @@ def removeSeat():
     sessionKey = request.args.get('sessionKey')
     seatNum = request.args.get('seatPosition')
 
+    if seatNum == None:
+        response = {
+            'statusCode' : 400,
+            'message' : 'You must provide a valid seatNum.',
+            'error' : 'Bad Request'
+        }
+        return response
+    if sessionKey == None:
+        response = {
+            'statusCode' : 400,
+            'message' : 'You must provide a valid sessionKey.',
+            'error' : 'Bad Request'
+        }
+        return response
+
     newData = fetchData(sessionKey)
 
     if newData["seats"][f"{seatNum}"] != '':
         newData["seats"][f"{seatNum}"] = ''
     else:
-        return "Invalid Seat"
+        response = {
+            'statusCode' : 400,
+            'message' : 'You must provide a valid seatNum.',
+            'error' : 'Bad Request'
+        }
+        return response
 
     originalFile = f"{sessionKey}.txt"
     oldFile = 'temp.txt'
@@ -320,7 +372,13 @@ def removeSeat():
     os.remove(oldFile)
     os.chdir('..')
 
+    outputData = {
+        'statusCode' : 200,
+        'message' : f"{seatNum} has been removed successfully.",
+        'error' : 'OK'
+    }
     return f"{seatNum} has been removed from the classroom."
+
 
 
 @app.route("/")
