@@ -5,6 +5,18 @@ import os
 import uuid
 import json
 
+""" ENDPOINTS """
+# / - lists all sessions
+# /createSession - creates a session
+# /joinData?sessionKey=x - returns all data
+# /adminData?sessionKey=x&adminKey=x - returns all data
+# /studentData?sessionKey=x&seatPosition=x - returns session name seat
+# /joinSession?sessionKey=x&userName=x&seatPosition=x
+# /removeSeat?sessionKey=x&seatPosition=x - removes a seat obviously
+
+# /createPacket
+# /name?name=x - a test endpoint
+
 # venv\Scripts\Activate.ps1
 # flask --app backendcode.py run
 # pip install Flask-Cors 
@@ -124,7 +136,108 @@ mainData = {
         'E16': '',
     },
 
-    'messages' : [],
+    'messages' : {
+        'A1' : [],
+        'A2' : [],
+        'A3' : [],
+        'A4' : [],
+        'A5' : [],
+        'A6' : [],
+        'A7' : [],
+        'A8' : [],
+        'A9' : [],
+        'A10' : '',
+        'A11' : '',
+        'A12' : '',
+        'A13' : '',
+        'A14' : '',
+        'A15' : '',
+        'A16' : '',
+        'A17' : '',
+        'A18' : '',
+        'A19' : '',
+        'A20' : '',
+        
+        'B1': '',
+        'B2': '',
+        'B3': '',
+        'B4': '',
+        'B5': '',
+        'B6': '',
+        'B7': '',
+        'B8': '',
+        'B9': '',
+        'B10': '',
+        'B11': '',
+        'B12': '',
+        'B13': '',
+        'B14': '',
+        'B15': '',
+        'B16': '',
+        'B17': '',
+        'B18': '',
+        'B19': '',
+        'B20': '',
+
+        'C1': '',
+        'C2': '',
+        'C3': '',
+        'C4': '',
+        'C5': '',
+        'C6': '',
+        'C7': '',
+        'C8': '',
+        'C9': '',
+        'C10': '',
+        'C11': '',
+        'C12': '',
+        'C13': '',
+        'C14': '',
+        'C15': '',
+        'C16': '',
+        'C17': '',
+        'C18': '',
+        'C19': '',
+        'C20': '',
+
+        'D1': '',
+        'D2': '',
+        'D3': '',
+        'D4': '',
+        'D5': '',
+        'D6': '',
+        'D7': '',
+        'D8': '',
+        'D9': '',
+        'D10': '',
+        'D11': '',
+        'D12': '',
+        'D13': '',
+        'D14': '',
+        'D15': '',
+        'D16': '',
+        'D17': '',
+        'D18': '',
+        'D19': '',
+        'D20': '',
+
+        'E1': '',
+        'E2': '',
+        'E3': '',
+        'E4': '',
+        'E5': '',
+        'E6': '',
+        'E7': '',
+        'E8': '',
+        'E9': '',
+        'E10': '',
+        'E11': '',
+        'E12': '',
+        'E13': '',
+        'E14': '',
+        'E15': '',
+        'E16': '',
+    },
     
     'packets' : [
         {
@@ -245,7 +358,11 @@ def createSession():
                     newFile.write('\n')
 
         os.chdir('..')
-        return mainData
+        usefulData = {
+            'sessionKey' : newData["sessionKey"],
+            'adminKey' : newData["adminKey"]
+        }
+        return usefulData
 
 
 def fetchData(sessionKey):
@@ -280,15 +397,39 @@ def getJoinData():
     """Displays all the current data about a given session."""
     sessionKey = request.args.get('sessionKey')
     return fetchData(sessionKey)
-    
+
+
+@app.route("/adminData")
+def getAdminData():
+    sessionKey = request.args.get('sessionKey')
+    adminKey = request.args.get('adminKey')
+
+    x = fetchData(sessionKey)
+    if x['adminKey'] != adminKey:
+        response = {
+            'canProceed' : False,
+            'statusCode' : 403,
+            'message' : 'Invalid adminKey',
+            'error' : 'Forbidden'
+        }
+        return response
+    else:
+        return x
+
+
+@app.route("/studentData")
+def getStudentData():
+    sessionKey = request.args.get('sessionKey')
+    seatNum = request.args.get('seatPosition')
+
 
 @app.route("/joinSession", methods=["POST", "GET"])
 def joinSession():
     if request.method == "POST":
         content_type = request.headers.get('Content-Type')
         if (content_type == 'application/json'):
-            json = request.json
-            return json
+            jsonData = request.json
+            return jsonData
         else:
             response = {
                 'canProceed' : False,
@@ -420,35 +561,39 @@ def removeSeat():
     return f"{seatNum} has been removed from the classroom."
 
 
+@app.route("/createPacket", methods=["POST", "GET"])
+def createPacket():
+    pass
 
-@app.route("/createMessage")
-def createMessage():
-    sessionKey = request.args.get('sessionKey')
 
-    newData = fetchData(sessionKey)
-    if newData["seats"][f"{seatNum}"] != '':
-        newData["seats"][f"{seatNum}"] = ''
-    else:
-        response = {
-            'statusCode' : 400,
-            'message' : 'You must provide a valid seatNum.',
-            'error' : 'Bad Request'
-        }
-        return response
+# @app.route("/createMessage")
+# def createMessage():
+#     sessionKey = request.args.get('sessionKey')
 
-    originalFile = f"{sessionKey}.txt"
-    oldFile = 'temp.txt'
+#     newData = fetchData(sessionKey)
+#     if newData["seats"][f"{seatNum}"] != '':
+#         newData["seats"][f"{seatNum}"] = ''
+#     else:
+#         response = {
+#             'statusCode' : 400,
+#             'message' : 'You must provide a valid seatNum.',
+#             'error' : 'Bad Request'
+#         }
+#         return response
 
-    os.chdir(os.path.join(".", "Sessions"))
-    os.rename(originalFile, oldFile)
-    json_object = json.dumps(newData, indent=4)
+#     originalFile = f"{sessionKey}.txt"
+#     oldFile = 'temp.txt'
 
-    with open(f"{sessionKey}.txt", "w") as newFile:
-        newFile.write(json_object)
-        newFile.write('\n')
+#     os.chdir(os.path.join(".", "Sessions"))
+#     os.rename(originalFile, oldFile)
+#     json_object = json.dumps(newData, indent=4)
 
-    os.remove(oldFile)
-    os.chdir('..')
+#     with open(f"{sessionKey}.txt", "w") as newFile:
+#         newFile.write(json_object)
+#         newFile.write('\n')
+
+#     os.remove(oldFile)
+#     os.chdir('..')
 
 
 
