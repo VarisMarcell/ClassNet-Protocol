@@ -196,12 +196,13 @@ def home():
 
 
 @app.route("/createSession", methods=["POST", "GET"])
+@cross_origin()
 def createSession():
     if request.method == "POST":
         content_type = request.headers.get('Content-Type')
         if (content_type == 'application/json'):
-            json = request.json
-            return json
+            jsonData = request.json
+            return jsonData
         else:
             response = {
                 'canProceed' : False,
@@ -210,39 +211,39 @@ def createSession():
                 'error' : 'Bad Request'
             }
             return response
+    else:
+        os.chdir(os.path.join(".", "Sessions"))
+        sessionName = str(uuid.uuid4())[:6]
+        adminKey = str(uuid.uuid4())
+        print("somthin'")
 
+        x = True # set to false if no matching file found
+        y = False # set to true if theres no matching file found or the current directory is empty
+        num = 0 # a basic counter to see how many times the while loop has looped
 
-    os.chdir(os.path.join(".", "Sessions"))
-    sessionName = str(uuid.uuid4())[:6]
-    adminKey = str(uuid.uuid4())
+        while x:
+            num += 1
+            for i in os.listdir():
+                if i == (f"{sessionName}.txt"):
+                    return
+                else:
+                    y = True
+            if os.listdir() == [] or y:
+                x = False
 
-    x = True # set to false if no matching file found
-    y = False # set to true if theres no matching file found or the current directory is empty
-    num = 0 # a basic counter to see how many times the while loop has looped
+            newData = mainData
+            newData["sessionKey"] = sessionName
+            newData["adminKey"] = adminKey
 
-    while x:
-        num += 1
-        for i in os.listdir():
-            if i == (f"{sessionName}.txt"):
-                return
-            else:
-                y = True
-        if os.listdir() == [] or y:
-            x = False
+            json_object = json.dumps(newData, indent=4)
 
-        newData = mainData
-        newData["sessionKey"] = sessionName
-        newData["adminKey"] = adminKey
+            if x == False:
+                with open(f"{sessionName}.txt", "w") as newFile:
+                    newFile.write(json_object)
+                    newFile.write('\n')
 
-        json_object = json.dumps(newData, indent=4)
-
-        if x == False:
-            with open(f"{sessionName}.txt", "w") as newFile:
-                newFile.write(json_object)
-                newFile.write('\n')
-
-    os.chdir('..')
-    return mainData
+        os.chdir('..')
+        return mainData
 
 
 def fetchData(sessionKey):
