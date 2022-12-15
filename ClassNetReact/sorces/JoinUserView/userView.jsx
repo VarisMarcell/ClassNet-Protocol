@@ -87,21 +87,22 @@ const UserView = () => {
                                     </section>
                                     : viewable.split ?
                                         <>
-                                            <SplitMessage lines={lines}/>
+                                            <SplitMessage lines={lines} />
                                             <section className="enterMessage" style={{ opacity: 0.65 }}>
                                                 <h1>Message:</h1>
                                                 <TextField disabled onChange={handleMessageChange} value={message.message} id="filled-basic, fullWidth" label="Enter Message Here" variant="filled" />
                                             </section>
                                         </>
-                                        :
-                                        <>
-                                            <PackageMessages />
-                                            <SplitMessage lines={lines}/>
-                                            <section className="enterMessage" style={{ opacity: 0.65 }}>
-                                                <h1>Message:</h1>
-                                                <TextField disabled onChange={handleMessageChange} value={message.message} id="filled-basic, fullWidth" label="Enter Message Here" variant="filled" />
-                                            </section>
-                                        </>
+                                        : viewable.package ?
+                                            <>
+                                                <PackageMessages lines={lines} />
+                                                <SplitMessage lines={lines} />
+                                                <section className="enterMessage" style={{ opacity: 0.65 }}>
+                                                    <h1>Message:</h1>
+                                                    <TextField disabled onChange={handleMessageChange} value={message.message} id="filled-basic, fullWidth" label="Enter Message Here" variant="filled" />
+                                                </section>
+                                            </>
+                                            : <></>
 
                         }
                     </section>
