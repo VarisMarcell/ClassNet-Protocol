@@ -1,18 +1,22 @@
-import * as React from 'react';
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { TextField } from "@mui/material"
 import PackageMessages from "../../src/assets/components/messageBody/packageMessage"
-import EnterMessage from "../../src/assets/components/messageBody/enterMessage"
 import SplitMessage from "../../src/assets/components/messageBody/splitMessage"
 import VerticalLinearStepper from "../../src/assets/components/steper"
 
 const UserView = () => {
     const [viewable, setViewable] = useState({})
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = useState(0)
+    const [lines, setLines] = useState(1)
     const { session, name, seat } = useParams()
     const [message, setMessage] = useState({
         message: ""
     })
+
+    useEffect(() => {
+        setLines(Math.ceil(message.message.length / 16))
+    }, [message.message])
 
     useEffect(() => {
         activeStep == 0 ? setViewable({
@@ -37,7 +41,7 @@ const UserView = () => {
             package: true,
         })
     }, [activeStep])
-    
+
 
     const handleMessageChange = (event) => {
         const { value } = event.target
@@ -68,7 +72,7 @@ const UserView = () => {
                     </div>
                 </section>
                 <section className="notifications">
-                    <h1>Steps</h1>
+                    <h1>ClassNet Protocals</h1>
                 </section>
             </nav>
             <section className="userBody">
@@ -77,18 +81,27 @@ const UserView = () => {
                         {
                             viewable.begining ? <div></div>
                                 : viewable.enterMessage ?
-                                    <EnterMessage funcNam={handleMessageChange} stateNam={message} />
+                                    <section className="enterMessage">
+                                        <h1>Message:</h1>
+                                        <TextField onChange={handleMessageChange} value={message.message} id="filled-basic, fullWidth" label="Enter Message Here" variant="filled" />
+                                    </section>
                                     : viewable.split ?
                                         <>
-                                            <EnterMessage funcNam={handleMessageChange} stateNam={message} />
-                                            <SplitMessage />
+                                            <SplitMessage lines={lines}/>
+                                            <section className="enterMessage" style={{ opacity: 0.65 }}>
+                                                <h1>Message:</h1>
+                                                <TextField disabled onChange={handleMessageChange} value={message.message} id="filled-basic, fullWidth" label="Enter Message Here" variant="filled" />
+                                            </section>
                                         </>
                                         :
-                                            <>
-                                                <EnterMessage funcNam={handleMessageChange} stateNam={message} />
-                                                <SplitMessage />
-                                                <PackageMessages />
-                                            </>
+                                        <>
+                                            <PackageMessages />
+                                            <SplitMessage lines={lines}/>
+                                            <section className="enterMessage" style={{ opacity: 0.65 }}>
+                                                <h1>Message:</h1>
+                                                <TextField disabled onChange={handleMessageChange} value={message.message} id="filled-basic, fullWidth" label="Enter Message Here" variant="filled" />
+                                            </section>
+                                        </>
 
                         }
                     </section>
