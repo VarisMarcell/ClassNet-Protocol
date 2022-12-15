@@ -41,8 +41,8 @@ const Lines = ({ lineData, setLineData, Key }) => {
     return (
         <div className="line0, packetLines">
             <h1>Line: {Key}</h1>
-            <TextField sx={{ width: "50px" }} onChange={handleChange} name={"zero"} value={lineData["zero"]} id="outlined-basic" label="0" variant="outlined" />
-            <TextField sx={{ width: "50px" }} onChange={handleChange} name={"one"} value={lineData["one"]} id="outlined-basic" label="1" variant="outlined" />
+            <TextField sx={{ width: "50px" }} onChange={handleChange} name={Key["zero"]} value={lineData["zero"]} id="outlined-basic" label="0" variant="outlined" />
+            <TextField sx={{ width: "50px" }} onChange={handleChange} name={Key["one"]} value={lineData["one"]} id="outlined-basic" label="1" variant="outlined" />
             <TextField sx={{ width: "50px" }} id="outlined-basic" label="2" variant="outlined" />
             <TextField sx={{ width: "50px" }} id="outlined-basic" label="3" variant="outlined" />
             <TextField sx={{ width: "50px" }} id="outlined-basic" label="4" variant="outlined" />
