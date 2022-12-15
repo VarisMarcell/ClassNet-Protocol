@@ -190,40 +190,6 @@ def home():
 # session = params.session
 
 
-@app.route("/joinData", methods=["GET"])
-def getJoinData():
-    """Displays all the current data about a given session."""
-    sessionKey = request.args.get('sessionKey')
-    newData = ''
-    os.chdir(os.path.join(".", "Sessions"))
-    for i in os.listdir():
-        print(i)
-        if f"{sessionKey}.txt" == i:
-            newFile = open(f"{sessionKey}.txt", "r")
-            newData = newFile.read()
-
-    os.chdir('..')
-    
-    x = json.loads(newData)
-    return x
-    
-
-@app.route("/joinSession", methods=["POST", "GET"])
-def joinSession():
-    if request.method == "POST":
-        return "..."
-
-    sessionKey = request.args.get('sessionKey')
-    userName = request.args.get('userName')
-    seatNum = request.args.get('seatPosition')
-    response_body = {
-        "sessionKey": sessionKey,
-        "userName": userName,
-        "seatNum": seatNum,
-    }
-    return response_body
-
-
 @app.route("/createSession")
 def createSession():
     os.chdir(os.path.join(".", "Sessions"))
@@ -257,6 +223,161 @@ def createSession():
 
     os.chdir('..')
     return mainData
+
+
+def fetchData(sessionKey):
+    os.chdir(os.path.join(".", "Sessions"))
+
+    counter = 0
+    while True:
+        if counter >= len(os.listdir()):
+            os.chdir('..')
+            response = {
+                'statusCode' : 404,
+                'message' : 'A session with that key could not be found.',
+                'error' : 'Not Found'
+            }
+            return response
+        elif f"{sessionKey}.txt" == os.listdir()[counter]:
+            sessionFile = open(f"{sessionKey}.txt", "r")
+            sessionData = sessionFile.read()
+            break
+        else:
+            counter += 1
+    
+    newData = json.loads(sessionData)
+    sessionFile.close()
+    os.chdir('..')
+
+    return newData
+
+
+@app.route("/joinData", methods=["GET"])
+def getJoinData():
+    """Displays all the current data about a given session."""
+    sessionKey = request.args.get('sessionKey')
+    return fetchData(sessionKey)
+    
+
+@app.route("/joinSession", methods=["POST", "GET"])
+def joinSession():
+    if request.method == "POST":
+        return "..."
+
+    sessionKey = request.args.get('sessionKey')
+    userName = request.args.get('userName')
+    seatNum = request.args.get('seatPosition')
+
+    if seatNum == None:
+        response = {
+            'statusCode' : 400,
+            'message' : 'You must provide a valid seatNum.',
+            'error' : 'Bad Request'
+        }
+        return response
+    if sessionKey == None:
+        response = {
+            'statusCode' : 400,
+            'message' : 'You must provide a valid sessionKey.',
+            'error' : 'Bad Request'
+        }
+        return response
+    if userName == None:
+        response = {
+            'statusCode' : 400,
+            'message' : 'You must provide a valid userName.',
+            'error' : 'Bad Request'
+        }
+        return response
+
+    newData = fetchData(sessionKey)
+    if newData["seats"][f"{seatNum}"] == '':
+        newData["seats"][f"{seatNum}"] = userName
+    else:
+        response = {
+            'statusCode' : 400,
+            'message' : 'You must provide a valid seatNum.',
+            'error' : 'Bad Request'
+        }
+        return response
+
+    originalFile = f"{sessionKey}.txt"
+    oldFile = 'temp.txt'
+
+    os.chdir(os.path.join(".", "Sessions"))
+    os.rename(originalFile, oldFile)
+    json_object = json.dumps(newData, indent=4)
+
+    with open(f"{sessionKey}.txt", "w") as newFile:
+        newFile.write(json_object)
+        newFile.write('\n')
+
+    os.remove(oldFile)
+    os.chdir('..')
+
+    response_body = {
+        "sessionKey": sessionKey,
+        "userName": userName,
+        "seatNum": seatNum,
+    }
+    return response_body
+
+
+@app.route("/removeSeat", methods=["POST", "GET"])
+def removeSeat():
+    if request.method == "POST":
+        return "..."
+
+    sessionKey = request.args.get('sessionKey')
+    seatNum = request.args.get('seatPosition')
+
+    if seatNum == None:
+        response = {
+            'statusCode' : 400,
+            'message' : 'You must provide a valid seatNum.',
+            'error' : 'Bad Request'
+        }
+        return response
+    if sessionKey == None:
+        response = {
+            'statusCode' : 400,
+            'message' : 'You must provide a valid sessionKey.',
+            'error' : 'Bad Request'
+        }
+        return response
+
+    newData = fetchData(sessionKey)
+
+    if newData["seats"][f"{seatNum}"] != '':
+        newData["seats"][f"{seatNum}"] = ''
+    else:
+        response = {
+            'statusCode' : 400,
+            'message' : 'You must provide a valid seatNum.',
+            'error' : 'Bad Request'
+        }
+        return response
+
+    originalFile = f"{sessionKey}.txt"
+    oldFile = 'temp.txt'
+
+    os.chdir(os.path.join(".", "Sessions"))
+    os.rename(originalFile, oldFile)
+    json_object = json.dumps(newData, indent=4)
+
+    with open(f"{sessionKey}.txt", "w") as newFile:
+        newFile.write(json_object)
+        newFile.write('\n')
+
+    os.remove(oldFile)
+    os.chdir('..')
+
+    outputData = {
+        'statusCode' : 200,
+        'message' : f"{seatNum} has been removed successfully.",
+        'error' : 'OK'
+    }
+    return f"{seatNum} has been removed from the classroom."
 
 
 
