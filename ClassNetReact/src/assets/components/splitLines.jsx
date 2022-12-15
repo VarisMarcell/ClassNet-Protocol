@@ -1,9 +1,12 @@
 import { TextField } from '@mui/material'
 import { useState } from 'react'
 
-const Lines = ({lineData, setLineData, Key}) => {
-    // setLineData({
-    //         id: {Key},
+const Lines = ({ lineData, setLineData, Key }) => {
+    // setLineData(prevLineData => {
+    //     return {
+    //         ...prevLineData,
+    //         Key : {
+    //         id : { Key },
     //         "zero": " ",
     //         "one": " ",
     //         "two": " ",
@@ -20,10 +23,12 @@ const Lines = ({lineData, setLineData, Key}) => {
     //         "D": " ",
     //         "E": " ",
     //         "F": " ",
+    //         }
+    //     }
     // })
 
     // const handleChange = (event) => {
-    //     const {name, value} = event.target
+    //     const { name, value } = event.target
     //     setLineData(prevState => {
     //         return {
     //             ...prevState,
