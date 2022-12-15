@@ -18,7 +18,7 @@ function App() {
       .then(response => setData(response))
       .catch(error => console.log(error))
 
-    fetch('http://127.0.0.1:5000/Caeden', {
+    fetch('http://127.0.0.1:5000/name', {
       'methods': "GET",
       headers: {
         'Content-Type': "application/json",
@@ -28,6 +28,17 @@ function App() {
       .then(response => response.json())
       .then(response => setData(response))
       .catch(error => console.log(error))
+
+    // fetch('http://127.0.0.1:5000/createSession', {
+    //   'methods': "GET",
+    //   headers: {
+    //     'Content-Type': "application/json",
+    //     'Accept': "application/json"
+    //   }
+    // })
+    //   .then(response => response.json())
+    //   .then(response => setData(response))
+    //   .catch(error => console.log(error))
   }
 
   useEffect(() => {

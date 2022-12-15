@@ -1,4 +1,4 @@
-from flask import Flask, request 
+from flask import Flask, request, redirect 
 from flask_cors import CORS, cross_origin
 
 import os
@@ -22,13 +22,38 @@ def home():
     }
     return response_body
 
-@app.route("/joinSession")
-def joinSession(sessionKey, userName, seatNum):
-    for i in os.listdir():
-        if i == (f"{sessionKey}.txt"):
-            pass
-        else: 
-            return
+# params = request.body
+# session = params.session
+
+@app.route("/joinData")
+def getJoinData():
+    with open(f"{session}.txt", "r") as newFile:
+            newData = newFile.read()
+
+
+@app.route("/joinSession", methods=["POST", "GET"])
+def joinSession():
+    if request.method == "POST":
+        sessionKey = request.form["sessionKey"]
+        userName = request.form["userName"]
+        seatNum = request.form["seatPosition"]
+
+        newResponse = {
+            'session' : sessionKey,
+            'username' : userName,
+            'seat' : seatNum
+        }
+        return newResponse
+        for i in os.listdir():
+            if i == (f"{sessionKey}.txt"):
+                return redirect(url_for(""))
+            else: 
+                return
+    else:
+        return {
+            'bruh' : 3
+        }
+    
 
 # @app.route("/joinSession", methods=["POST", "GET"])
 # def joinSession():
@@ -71,6 +96,7 @@ def createSession():
         mainData = {
             'sessionKey' : sessionName,
             'adminKey' : adminKey,
+
             
             'seats' : {
                 'A1' : '',
@@ -231,6 +257,8 @@ def createSession():
 
 def route():
     return 0
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
