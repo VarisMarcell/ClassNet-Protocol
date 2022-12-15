@@ -2,6 +2,8 @@
 
 
 * {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
     padding: 0;
     margin: 0;
 }
@@ -110,6 +112,7 @@ body {
 /* nav bar */
 .userViewNav {
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
 
     width: 100vw;
@@ -159,7 +162,7 @@ body {
 /* content body */
 .userBody {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-between;
 }
 
