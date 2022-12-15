@@ -11,13 +11,8 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
 
 
-const PackageMessages = ({ lines }) => {
-    const steps = []
-    for (let i = 0; i < lines; i++) {
-        steps.push({
-            description: <Packet key={i}/>
-        });
-    }
+const PackageMessages = ({packetDataHeader, setPacketDataHeader, packetDataBody, setPacketDataBody}) => {
+    const steps = packetDataHeader.map((_, index) => ({ description: <Packet key={index} packetDataHeader={packetDataHeader} setPacketDataHeader={setPacketDataHeader} packetDataBody={packetDataBody} setPacketDataBody={setPacketDataBody}/>}))
 
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);

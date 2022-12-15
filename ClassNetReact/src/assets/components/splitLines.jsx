@@ -1,6 +1,4 @@
 import { TextField } from '@mui/material'
-import { useState } from 'react'
-
 
 
 const Lines = ({ lineData, setLineData }) => {

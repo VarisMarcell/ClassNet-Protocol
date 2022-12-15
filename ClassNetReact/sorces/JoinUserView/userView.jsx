@@ -5,6 +5,37 @@ import PackageMessages from "../../src/assets/components/messageBody/packageMess
 import SplitMessage from "../../src/assets/components/messageBody/splitMessage"
 import VerticalLinearStepper from "../../src/assets/components/steper"
 
+
+const defaultPacketHeader = {
+    "SSec": " ",
+    "SRow": " ",
+    "SSeat": " ",
+    "DSec": " ",
+    "DRow": " ",
+    "DSeat": " ",
+    "Sequ#": " ",
+    "SequTotal": " ",
+}
+
+const defaultPacketBody = {
+    "0": " ",
+    "1": " ",
+    "2": " ",
+    "3": " ",
+    "4": " ",
+    "5": " ",
+    "6": " ",
+    "7": " ",
+    "8": " ",
+    "9": " ",
+    "A": " ",
+    "B": " ",
+    "C": " ",
+    "D": " ",
+    "E": " ",
+    "F": " ",
+}
+
 const defaultLine = {
     "0": " ",
     "1": " ",
@@ -28,6 +59,8 @@ const UserView = () => {
     const [viewable, setViewable] = useState({})
     const [activeStep, setActiveStep] = useState(0)
     const [lineData, setLineData] = useState([])
+    const [packetDataHeader, setPacketDataHeader] = useState([])
+    const [packetDataBody, setPacketDataBody] = useState([])
     const { session, name, seat } = useParams()
     const [message, setMessage] = useState({
         message: ""
@@ -37,10 +70,24 @@ const UserView = () => {
         console.log("call")
         setLineData(_ => {
             const newLines = []
-            for (let i=0; i < Math.ceil(message.message.length / 16); i++ ){
-                newLines.push({...defaultLine})
+            for (let i = 0; i < Math.ceil(message.message.length / 16); i++) {
+                newLines.push({ ...defaultLine })
             }
             return newLines
+        })
+        setPacketDataHeader(_ => {
+            const newPacketHeader = []
+            for (let i = 0; i < Math.ceil(message.message.length / 16); i++) {
+                newPacketHeader.push({ ...defaultLine })
+            }
+            return newPacketHeader
+        })
+        setPacketDataBody(_ => {
+            const newPacketBody = []
+            for (let i = 0; i < Math.ceil(message.message.length / 16); i++) {
+                newPacketBody.push({ ...defaultLine })
+            }
+            return newPacketBody
         })
         // setLines(Math.ceil(message.message.length / 16))
     }, [message.message])
@@ -106,7 +153,11 @@ const UserView = () => {
                 <div className="userContentBody">
                     <section className="userMessageBody">
                         {
-                            viewable.begining ? <div></div>
+                            viewable.begining ?
+                                <div>
+                                    <h1 className='mainTitle'>Welcome Too</h1>
+                                    <h1 className='mainTitle'>ClassNet Protocols</h1>
+                                </div>
                                 : viewable.enterMessage ?
                                     <section className="enterMessage">
                                         <h1>Message:</h1>
@@ -114,7 +165,7 @@ const UserView = () => {
                                     </section>
                                     : viewable.split ?
                                         <>
-                                            <SplitMessage lineData={lineData} setLineData={setLineData}  />
+                                            <SplitMessage lineData={lineData} setLineData={setLineData} />
                                             <section className="enterMessage" style={{ opacity: 0.65 }}>
                                                 <h1>Message:</h1>
                                                 <TextField disabled onChange={handleMessageChange} value={message.message} id="filled-basic, fullWidth" label="Enter Message Here" variant="filled" />
@@ -122,7 +173,7 @@ const UserView = () => {
                                         </>
                                         : viewable.package ?
                                             <>
-                                                {/* <PackageMessages lines={lines} /> */}
+                                                <PackageMessages packetDataHeader={packetDataHeader} setPacketDataHeader={setPacketDataHeader} packetDataBody={packetDataBody} setPacketDataBody={setPacketDataBody} />
                                                 <SplitMessage lineData={lineData} setLineData={setLineData} />
                                                 <section className="enterMessage" style={{ opacity: 0.65 }}>
                                                     <h1>Message:</h1>

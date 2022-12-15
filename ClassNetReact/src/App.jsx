@@ -23,7 +23,9 @@ function App() {
     const rawData = await fetch('http://127.0.0.1:5000/createSession')
     const jsonData = await rawData.json()
     setData(jsonData)
+    redirect()
   }
+
 
   return (
     <div className="App">
@@ -32,16 +34,14 @@ function App() {
         <button
           className='createSession'
           onClick={() => {
-            startSession()
-            // navigate(`/CreateSession/${sessionKey}`)
+            navigate(`/CreateSession/${sessionKey}`)
           }}
 
         >Create Session</button>
         <button
           className='joinSession'
           onClick={() => {
-            getData()
-            // navigate('/JoinSession')
+            navigate('/JoinSession')
           }}
         >Join Session</button>
       </section>

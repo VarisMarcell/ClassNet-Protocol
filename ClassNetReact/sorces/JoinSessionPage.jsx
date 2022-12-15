@@ -44,9 +44,9 @@ const JoinSession = () => {
                 </div>
                 <button
                     className='joinSession'
-                    onClick={join}
-
-                        // navigate(`/JoinSession / userView / ${ form.sessionKey } /${form.userName}/${ form.seatPosition } `)
+                    onClick={() => {
+                        navigate(`/JoinSession/userView/${form.sessionKey}/${form.userName}/${form.seatPosition}`)
+                    }}
                 >Join Session</button>
             </section>
         </div>
