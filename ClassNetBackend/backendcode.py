@@ -197,7 +197,6 @@ def getJoinData():
     newData = ''
     os.chdir(os.path.join(".", "Sessions"))
     for i in os.listdir():
-        print(i)
         if f"{sessionKey}.txt" == i:
             newFile = open(f"{sessionKey}.txt", "r")
             newData = newFile.read()
@@ -216,6 +215,43 @@ def joinSession():
     sessionKey = request.args.get('sessionKey')
     userName = request.args.get('userName')
     seatNum = request.args.get('seatPosition')
+
+    os.chdir(os.path.join(".", "Sessions"))
+
+    counter = 0
+    while True:
+        if f"{sessionKey}.txt" == os.listdir()[counter]:
+            sessionFile = open(f"{sessionKey}.txt", "r")
+            sessionData = sessionFile.read()
+            break
+        elif counter >= len(os.listdir()):
+            sessionFile.close()
+            os.chdir('..')
+            return "Invalid Session"
+        else:
+            counter += 1
+    
+    newData = json.loads(sessionData)
+    sessionFile.close()
+    if newData["seats"][f"{seatNum}"] == '':
+        newData["seats"][f"{seatNum}"] = userName
+    else:
+        os.chdir('..')
+        return "Invalid Seat"
+
+    originalFile = f"{sessionKey}.txt"
+    oldFile = 'temp.txt'
+
+    os.rename(originalFile, oldFile)
+    json_object = json.dumps(newData, indent=4)
+
+    with open(f"{sessionKey}.txt", "w") as newFile:
+        newFile.write(json_object)
+        newFile.write('\n')
+
+    os.remove(oldFile)
+    os.chdir('..')
+
     response_body = {
         "sessionKey": sessionKey,
         "userName": userName,
