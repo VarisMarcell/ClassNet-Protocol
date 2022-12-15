@@ -1,16 +1,11 @@
 import Lines from "../splitLines"
 
-const SplitMessage = ({lines, lineData, setLineData}) => {
-    const arrayOfLines = []
-    for (let i = 0; i < lines; i++) {
-            arrayOfLines.push(<Lines lineData={lineData} setLineData={setLineData} Key={i} />)
-        }
-
+const SplitMessage = ({lineData, setLineData}) => {
     return (
         <section className="splitMessage">
             <h1>Split Message:</h1>
             <section className='splitMessageInputs'>
-                {arrayOfLines}
+                <Lines lineData={lineData} setLineData={setLineData}/>
             </section>
         </section>
     )

@@ -5,18 +5,44 @@ import PackageMessages from "../../src/assets/components/messageBody/packageMess
 import SplitMessage from "../../src/assets/components/messageBody/splitMessage"
 import VerticalLinearStepper from "../../src/assets/components/steper"
 
+const defaultLine = {
+    "0": " ",
+    "1": " ",
+    "2": " ",
+    "3": " ",
+    "4": " ",
+    "5": " ",
+    "6": " ",
+    "7": " ",
+    "8": " ",
+    "9": " ",
+    "A": " ",
+    "B": " ",
+    "C": " ",
+    "D": " ",
+    "E": " ",
+    "F": " ",
+}
+
 const UserView = () => {
     const [viewable, setViewable] = useState({})
     const [activeStep, setActiveStep] = useState(0)
-    const [lines, setLines] = useState(1)
-    const [lineData, setLineData] = useState({})
+    const [lineData, setLineData] = useState([])
     const { session, name, seat } = useParams()
     const [message, setMessage] = useState({
         message: ""
     })
 
     useEffect(() => {
-        setLines(Math.ceil(message.message.length / 16))
+        console.log("call")
+        setLineData(_ => {
+            const newLines = []
+            for (let i=0; i < Math.ceil(message.message.length / 16); i++ ){
+                newLines.push({...defaultLine})
+            }
+            return newLines
+        })
+        // setLines(Math.ceil(message.message.length / 16))
     }, [message.message])
 
     useEffect(() => {
@@ -88,7 +114,7 @@ const UserView = () => {
                                     </section>
                                     : viewable.split ?
                                         <>
-                                            <SplitMessage lineData={lineData} setLineData={setLineData} lines={lines} />
+                                            <SplitMessage lineData={lineData} setLineData={setLineData}  />
                                             <section className="enterMessage" style={{ opacity: 0.65 }}>
                                                 <h1>Message:</h1>
                                                 <TextField disabled onChange={handleMessageChange} value={message.message} id="filled-basic, fullWidth" label="Enter Message Here" variant="filled" />
@@ -96,8 +122,8 @@ const UserView = () => {
                                         </>
                                         : viewable.package ?
                                             <>
-                                                <PackageMessages lines={lines} />
-                                                <SplitMessage lineData={lineData} setLineData={setLineData} lines={lines} />
+                                                {/* <PackageMessages lines={lines} /> */}
+                                                <SplitMessage lineData={lineData} setLineData={setLineData} />
                                                 <section className="enterMessage" style={{ opacity: 0.65 }}>
                                                     <h1>Message:</h1>
                                                     <TextField disabled onChange={handleMessageChange} value={message.message} id="filled-basic, fullWidth" label="Enter Message Here" variant="filled" />
