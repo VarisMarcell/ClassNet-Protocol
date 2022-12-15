@@ -220,14 +220,13 @@ def joinSession():
 
     counter = 0
     while True:
-        if f"{sessionKey}.txt" == os.listdir()[counter]:
+        if counter >= len(os.listdir()):
+            os.chdir('..')
+            return "Invalid Session"
+        elif f"{sessionKey}.txt" == os.listdir()[counter]:
             sessionFile = open(f"{sessionKey}.txt", "r")
             sessionData = sessionFile.read()
             break
-        elif counter >= len(os.listdir()):
-            sessionFile.close()
-            os.chdir('..')
-            return "Invalid Session"
         else:
             counter += 1
     
