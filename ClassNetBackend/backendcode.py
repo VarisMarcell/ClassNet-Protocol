@@ -15,44 +15,50 @@ app.config['CORS_HEADERS'] = "Content-Type"
 
 app = Flask(__name__)
 
-@app.route("/name")
+@app.route("/name", methods=['GET'])
 def home():
-    response_body = {
-        "name": "Ryan"
-    }
-    return response_body
+    # response_body = {
+    #     "name": "Ryan"
+    # }
+    # return response_body
+
+    args = request.args
+    print(args.get("name"))
+    return args.to_dict()
 
 # params = request.body
 # session = params.session
 
-@app.route("/joinData")
-def getJoinData():
-    with open(f"{session}.txt", "r") as newFile:
-            newData = newFile.read()
+# @app.route("/joinData")
+# def getJoinData():
+#     with open(f"111965.txt", "r") as newFile:
+#             newData = newFile.read()
+#             print(newData)
+#             newFile.close()
 
 
-@app.route("/joinSession", methods=["POST", "GET"])
-def joinSession():
-    if request.method == "POST":
-        sessionKey = request.form["sessionKey"]
-        userName = request.form["userName"]
-        seatNum = request.form["seatPosition"]
+# @app.route("/joinSession", methods=["POST", "GET"])
+# def joinSession():
+#     if request.method == "POST":
+#         sessionKey = request.form["sessionKey"]
+#         userName = request.form["userName"]
+#         seatNum = request.form["seatPosition"]
 
-        newResponse = {
-            'session' : sessionKey,
-            'username' : userName,
-            'seat' : seatNum
-        }
-        return newResponse
-        for i in os.listdir():
-            if i == (f"{sessionKey}.txt"):
-                return redirect(url_for(""))
-            else: 
-                return
-    else:
-        return {
-            'bruh' : 3
-        }
+#         newResponse = {
+#             'session' : sessionKey,
+#             'username' : userName,
+#             'seat' : seatNum
+#         }
+#         return newResponse
+#         for i in os.listdir():
+#             if i == (f"{sessionKey}.txt"):
+#                 return redirect(url_for(""))
+#             else: 
+#                 return
+#     else:
+#         return {
+#             'bruh' : 3
+#         }
     
 
 # @app.route("/joinSession", methods=["POST", "GET"])
@@ -249,10 +255,8 @@ def createSession():
 
 
 @app.route("/")
-
-@app.route("/")
-
-@app.route("/")
+def new():
+    pass
 
 
 def route():
