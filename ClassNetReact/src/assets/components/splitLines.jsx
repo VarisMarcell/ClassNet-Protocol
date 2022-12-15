@@ -1,62 +1,45 @@
 import { TextField } from '@mui/material'
 import { useState } from 'react'
 
-const Lines = ({ lineData, setLineData, Key }) => {
-    setLineData(prevLineData => {
-        return {
-            ...prevLineData,
-            Key : {
-            id : { Key },
-            "zero": " ",
-            "one": " ",
-            "two": " ",
-            "three": " ",
-            "four": " ",
-            "five": " ",
-            "six": " ",
-            "seven": " ",
-            "eight": " ",
-            "nine": " ",
-            "A": " ",
-            "B": " ",
-            "C": " ",
-            "D": " ",
-            "E": " ",
-            "F": " ",
-            }
-        }
-    })
 
-    const handleChange = (event) => {
-        const { name, value } = event.target
-        setLineData(prevState => {
-            return {
-                ...prevState,
-                [name]: value
-            }
+
+const Lines = ({ lineData, setLineData }) => {
+    console.log(lineData)
+    const handleChange = (event, key, index) => {
+        const { value } = event.target
+        setLineData(prevLineData => {
+            return prevLineData.map((line, i) => {
+                if (index == i) {
+                    return {
+                        ...line,
+                        [key]: value
+                    }
+                } else {
+                    return line
+                }
+            })
         })
-        console.log(state)
     }
 
     return (
         <div className="line0, packetLines">
-            <h1>Line: {Key}</h1>
-            <TextField sx={{ width: "50px" }} onChange={handleChange} name={Key["zero"]} value={lineData["zero"]} id="outlined-basic" label="0" variant="outlined" />
-            <TextField sx={{ width: "50px" }} onChange={handleChange} name={Key["one"]} value={lineData["one"]} id="outlined-basic" label="1" variant="outlined" />
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="2" variant="outlined" />
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="3" variant="outlined" />
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="4" variant="outlined" />
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="5" variant="outlined" />
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="6" variant="outlined" />
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="7" variant="outlined" />
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="8" variant="outlined" />
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="9" variant="outlined" />
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="A" variant="outlined" />
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="B" variant="outlined" />
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="C" variant="outlined" />
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="D" variant="outlined" />
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="E" variant="outlined" />
-            <TextField sx={{ width: "50px" }} id="outlined-basic" label="F" variant="outlined" />
+            {
+                lineData.map((line, index) => {
+                    return (
+                        <div key={index}>
+                            <h1>Line: {index}</h1>
+                            {
+                                Object.keys(line).map(key => {
+                                    return (
+                                        <TextField key={`${key}-${index}`} onChange={(event) => handleChange(event, key, index)} sx={{ width: "50px" }} id="outlined-basic" label={key} value={lineData[index][key]} variant="outlined" />
+                                    )
+                                })
+                            }
+                        </div>
+                    )
+                })
+            }
+
         </div>
     )
 }
