@@ -6,9 +6,6 @@ const SplitMessage = () => {
             <h1>Split Message:</h1>
             <section className='splitMessageInputs'>
                 <Lines />
-                <Lines />
-                <Lines />
-                <Lines />
             </section>
         </section>
     )
